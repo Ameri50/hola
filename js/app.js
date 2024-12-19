@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         addProduct(productName, productPrice, productStock);
         loadProducts();
         productForm.reset();
+
+        // Alerta después de agregar el producto
+        Swal.fire({
+            title: '¡Producto agregado!',
+            text: `${productName} ha sido agregado correctamente.`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
     });
 
     const customerForm = document.getElementById('customerForm');
@@ -52,16 +60,48 @@ document.addEventListener('DOMContentLoaded', () => {
         addCustomer(customerName, customerEmail);
         loadCustomers();
         customerForm.reset();
+
+        // Alerta después de agregar el cliente
+        Swal.fire({
+            title: '¡Cliente agregado!',
+            text: `${customerName} ha sido agregado correctamente.`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
     });
 
     document.getElementById('deleteAllProducts').addEventListener('click', () => {
-        deleteAllProducts();
-        loadProducts();
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡Esto eliminará todos los productos!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'No, cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAllProducts();
+                loadProducts();
+                Swal.fire('¡Eliminado!', 'Todos los productos han sido eliminados.', 'success');
+            }
+        });
     });
 
     document.getElementById('deleteAllCustomers').addEventListener('click', () => {
-        deleteAllCustomers();
-        loadCustomers();
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡Esto eliminará todos los clientes!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'No, cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAllCustomers();
+                loadCustomers();
+                Swal.fire('¡Eliminado!', 'Todos los clientes han sido eliminados.', 'success');
+            }
+        });
     });
 
     function loadProducts() {
