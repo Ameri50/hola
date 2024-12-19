@@ -9,23 +9,8 @@ export const getProducts = () => {
 };
 
 export const deleteAllProducts = () => {
-    // Función de eliminación adaptada para SweetAlert2
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: 'Esto eliminará todos los productos registrados.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            products = []; // Elimina todos los productos
-            Swal.fire('Eliminados!', 'Todos los productos han sido eliminados.', 'success');
-        } else {
-            Swal.fire('Cancelado', 'La eliminación fue cancelada.', 'info');
-        }
-    });
+    // Elimina todos los productos
+    products = [];
 };
 
 export const updateProduct = (index, name, price, stock) => {

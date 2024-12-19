@@ -80,13 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cancelButtonText: 'No, cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteAllProducts();
-                loadProducts();
+                deleteAllProducts();  // Elimina todos los productos
+                loadProducts();       // Recarga la lista de productos
                 Swal.fire('¡Eliminado!', 'Todos los productos han sido eliminados.', 'success');
             }
         });
     });
-
+    
     document.getElementById('deleteAllCustomers').addEventListener('click', () => {
         Swal.fire({
             title: '¿Estás seguro?',
@@ -97,15 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
             cancelButtonText: 'No, cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteAllCustomers();
-                loadCustomers();
+                deleteAllCustomers();  // Elimina todos los clientes
+                loadCustomers();       // Recarga la lista de clientes
                 Swal.fire('¡Eliminado!', 'Todos los clientes han sido eliminados.', 'success');
             }
         });
     });
 
     function loadProducts() {
-        productList.innerHTML = '';
+        productList.innerHTML = ''; // Limpiar la lista antes de cargarla
         getProducts().forEach((product, index) => {
             const li = document.createElement('li');
             li.innerHTML = `
@@ -125,13 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
         productForm.onsubmit = (e) => {
             e.preventDefault();
             updateProduct(index, document.getElementById('productName').value, document.getElementById('productPrice').value, document.getElementById('productStock').value);
-            loadProducts();
+            loadProducts();  // Recargar la lista de productos
             productForm.reset();
         };
     };
 
     function loadCustomers() {
-        customerList.innerHTML = '';
+        customerList.innerHTML = ''; // Limpiar la lista antes de cargarla
         getCustomers().forEach((customer, index) => {
             const li = document.createElement('li');
             li.innerHTML = `
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         customerForm.onsubmit = (e) => {
             e.preventDefault();
             updateCustomer(index, document.getElementById('customerName').value, document.getElementById('customerEmail').value);
-            loadCustomers();
+            loadCustomers();  // Recargar la lista de clientes
             customerForm.reset();
         };
     };
